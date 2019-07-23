@@ -1,0 +1,34 @@
+{
+  "name": "leftovers-backend",
+  "version": "1.0.0",
+  "description": "Leftovers Express App",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "dev": "npm run build && nodemon dist/app.js",
+    "start": "npm run build && node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ex8/leftovers-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ex8/leftovers-backend/issues"
+  },
+  "homepage": "https://github.com/ex8/leftovers-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.6.6",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "nodemon": "^1.19.1"
+  }
+}

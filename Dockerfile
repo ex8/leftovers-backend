@@ -15,7 +15,5 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-ENV JWT_KEY=${JWT_KEY}
-ENV MONGODB_URL=${MONGODB_URL}
 EXPOSE 4000
 CMD ["npm", "start"]

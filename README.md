@@ -5,10 +5,10 @@ Leftovers Express App
 
 ### Build
 ```
-docker build -t leftovers-client .
+docker build -t leftovers-server .
 ```
 
 ### Run
 ```
-docker run --name=client --network=leftovers-network --env-file .env -d -p 3000:3000 leftovers-client
+docker run --name=server --network=leftovers-network --env-file .env -d -p 4000:4000 leftovers-server
 ```

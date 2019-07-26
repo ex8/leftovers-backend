@@ -21,4 +21,4 @@ app.use(passport.initialize());
 
 app.use('/api/auth', authRouter);
 
-app.listen(port, () => console.log(`Backend running...`));
+app.listen(port, () => console.log(`Backend running on port ${port}`));

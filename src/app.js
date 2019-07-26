@@ -7,9 +7,11 @@ import passport from './config/passport';
 import authRouter from './routes/auth.routes';
 
 const app = express();
+const port = process.env.SERVER_PORT || 4000;
+const dbURL = process.env.MONGODB_URL || 'mongodb://127.0.0.1:27017/leftovers'; 
 
-connect(process.env.MONGODB_URL, { useNewUrlParser: true, useCreateIndex: true })
-  .then(() => console.log('MongoDB connected...'))
+connect(dbURL, { useNewUrlParser: true, useCreateIndex: true })
+  .then(() => console.log(`MongoDB connected to ${dbURL}`))
   .catch(err => console.error(`MongoDB connection error: ${err}`));
 
 app.use(logger('dev'));
@@ -19,4 +21,4 @@ app.use(passport.initialize());
 
 app.use('/api/auth', authRouter);
 
-app.listen(4000, () => console.log(`Backend running...`));
+app.listen(port, () => console.log(`Backend running...`));

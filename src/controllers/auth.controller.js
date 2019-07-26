@@ -43,8 +43,10 @@ const login = ({ body: { email, password } }, res) => {
 };
 
 const signup = (req, res) => {
-  const { firstName, lastName, email, username, password } = req.body;
-  User.find({$or: [{ email }, { username }]})
+  const { 
+    firstName, lastName, email, phone, streetName, 
+    city, state, zipCode, username, password } = req.body;
+  User.find({ $or: [{ email }, { username }] })
     .then(users => {
       if (users.length) {
         return res.json({
@@ -57,8 +59,13 @@ const signup = (req, res) => {
           firstName,
           lastName,
           email,
+          phone,
+          streetName,
+          city,
+          state,
+          zipCode,
           username,
-          password
+          password,
         })
         .then(user => res.json({
           success: true,

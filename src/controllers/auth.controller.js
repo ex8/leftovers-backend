@@ -2,6 +2,7 @@ import User from '../models/user.model';
 import { compare } from 'bcryptjs';
 
 const me = (req, res) => {
+  console.log(`USER ID: ${JSON.stringify(req.user.id)}`);
   res.json({
     success: true,
     user: req.user,

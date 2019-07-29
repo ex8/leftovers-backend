@@ -5,6 +5,7 @@ import { connect } from 'mongoose';
 
 import passport from './config/passport';
 import authRouter from './routes/auth.routes';
+import dishRouter from './routes/dish.routes';
 
 const app = express();
 
@@ -17,6 +18,8 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(passport.initialize());
 
+// app.use('/api/search', () => {});
 app.use('/api/auth', authRouter);
+app.use('/api/dishes', dishRouter);
 
 app.listen(4000, () => console.log(`Backend running...`));

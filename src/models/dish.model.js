@@ -1,7 +1,6 @@
 import { Schema, model } from 'mongoose';
 
 const dishSchema = new Schema({
-  // uuid ?
   title: {
     type: String,
     required: true,
@@ -18,12 +17,11 @@ const dishSchema = new Schema({
     type: Number,
     required: true,
   },
-  timestamps: true,
   chef: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },
-});
+}, { timestamps: true });
 
 export default model('Dish', dishSchema);

@@ -5,6 +5,7 @@ import { connect } from 'mongoose';
 import cors from 'cors';
 
 import passport from './config/passport';
+import searchRouter from './routes/search.routes';
 import authRouter from './routes/auth.routes';
 import dishRouter from './routes/dish.routes';
 
@@ -20,7 +21,7 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(passport.initialize());
 
-// app.use('/api/search', () => {});
+app.use('/api/search', searchRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/dishes', dishRouter);
 

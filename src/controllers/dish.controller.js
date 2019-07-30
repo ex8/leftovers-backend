@@ -19,7 +19,7 @@ const create = (req, res) => {
     description,
     stock,
     price,
-    chef: req.user._id
+    chef: req.user.id
   })
     .then(dish => res.json({
       success: true,
@@ -47,10 +47,17 @@ const detail = (req, res) => {
 };
 
 const update = (req, res) => {
-  res.json({
-    success: false,
-    m: 'ha'
-  });
+  Dish.findOneAndUpdate({
+    _id: req.params.id,
+    chef: req.user.id,
+  }, req.body, { new: true })
+    .then(dish => res.json({
+      success: true,
+      dish,
+    }))
+    .catch(err => res.json({
+      err,
+    }));
 };
 
 const remove = (req, res) => {

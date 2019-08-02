@@ -10,7 +10,7 @@ import authRouter from './routes/auth.routes';
 import dishRouter from './routes/dish.routes';
 
 const app = express();
-const port = process.env.SERVER_PORT || 4000;
+const port = process.env.API_PORT || 4000;
 const dbURL = process.env.MONGODB_URL || 'mongodb://127.0.0.1:27017/leftovers'; 
 
 connect(dbURL, { useNewUrlParser: true, useCreateIndex: true })

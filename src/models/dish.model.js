@@ -17,6 +17,14 @@ const dishSchema = new Schema({
     type: Number,
     required: true,
   },
+  tags: [String],
+  ingredients: [String],
+  rating: {
+    type: Number,
+    min: 0,
+    max: 5,
+    default: 0,
+  },
   chef: {
     type: Schema.Types.ObjectId,
     ref: 'User',

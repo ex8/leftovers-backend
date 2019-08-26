@@ -13,12 +13,14 @@ const list = (req, res) => {
 };
 
 const create = (req, res) => {
-  const { title, description, stock, price } = req.body;
+  const { title, description, stock, price, tags, ingredients } = req.body;
   Dish.create({
     title,
     description,
     stock,
     price,
+    tags: tags.split(','),
+    ingredients: ingredients.split(','),
     chef: req.user.id
   })
     .then(dish => res.json({

@@ -1,19 +1,26 @@
 import Dish from '../models/dish.model';
 
 const search = (req, res) => {
-  const { s } = req.query;
-  console.log(s);
+  const { s, p } = req.query;
   Dish
-    .find({})
-    .populate('chef')
-    .then(dishes => res.json({
-      success: true,
-      dishes,
-    }))
-    .catch(err => res.json({
-      success: false,
-      err,
-    }));
+  .find({
+    title: { $regex: new RegExp(s, 'i') },
+    // description: { $regex: new RegExp(s, 'i') },
+    // tags: { $regex: s, $options: 'i' },
+    // ingredients: { $regex: s, $options: 'i' },
+    // $text: {
+    //   $search: s,
+    // },
+  })
+  .populate('chef')
+  .then(dishes => res.json({
+    success: true,
+    dishes,
+  }))
+  .catch(err => res.json({
+    success: false,
+    err,
+  }));
 };
 
 const popular = (req, res) => {

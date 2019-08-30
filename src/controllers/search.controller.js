@@ -23,6 +23,20 @@ const search = (req, res) => {
   }));
 };
 
+const detail = (req, res) => {
+  Dish
+    .findById(req.params.id)
+    .populate('chef')
+    .then(dish => res.json({
+      success: true,
+      dish,
+    }))
+    .catch(err => res.json({
+      success: false,
+      err,
+    }));
+};
+
 const popular = (req, res) => {
   Dish
     .find({})
@@ -57,6 +71,7 @@ const newest = (req, res) => {
 
 export {
   search,
+  detail,
   popular,
   newest,
 };

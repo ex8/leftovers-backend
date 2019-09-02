@@ -69,9 +69,24 @@ const newest = (req, res) => {
     }));
 };
 
+const dishesByChef = (req, res) => {
+  Dish
+    .find({ chef: req.params.id })
+    .populate('chef')
+    .then(dishes => res.json({
+      success: true,
+      dishes,
+    }))
+    .catch(err => res.json({
+      success: false,
+      err,
+    }));
+};
+
 export {
   search,
   detail,
   popular,
   newest,
+  dishesByChef
 };

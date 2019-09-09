@@ -44,8 +44,7 @@ const login = ({ body: { email, password } }, res) => {
 
 const signup = (req, res) => {
   const { 
-    firstName, lastName, email, phone, streetName, 
-    city, state, zipCode, username, password } = req.body;
+    firstName, lastName, email, phone, username, password } = req.body;
   User.find({ $or: [{ email }, { username }] })
     .then(users => {
       if (users.length) {
@@ -60,10 +59,6 @@ const signup = (req, res) => {
           lastName,
           email,
           phone,
-          streetName,
-          city,
-          state,
-          zipCode,
           username,
           password,
         })

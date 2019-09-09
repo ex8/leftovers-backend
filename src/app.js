@@ -8,6 +8,7 @@ import passport from './config/passport';
 import searchRouter from './routes/search.routes';
 import authRouter from './routes/auth.routes';
 import dishRouter from './routes/dish.routes';
+import profileRouter from './routes/profile.routes';
 
 const app = express();
 const port = process.env.API_PORT || 4000;
@@ -26,5 +27,6 @@ app.use(passport.initialize());
 app.use('/api/search', searchRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/dishes', dishRouter);
+app.use('/api/profile', profileRouter);
 
 app.listen(port, () => console.log(`Backend running on port ${port}`));

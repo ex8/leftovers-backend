@@ -8,7 +8,16 @@ const dishSchema = new Schema({
   tags: [String],
   ingredients: [String],
   rating: { type: Number, min: 0, max: 5, default: 0, },
-  // location: { type: { type: String }, coordinates: [] },
+  // location: { 
+  //   type: { 
+  //     type: String, 
+  //     default: 'Point' 
+  //   }, 
+  //   coordinates: [Number],
+  //   required: true,
+  // },
+  // availablePickupTimes: [],
+  // reviews: [],
   chef: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -16,6 +25,6 @@ const dishSchema = new Schema({
   },
 }, { timestamps: true });
 
-// dishSchema.index({ location: "2dsphere" });
+dishSchema.index({ location: "2dsphere" });
 
 export default model('Dish', dishSchema);

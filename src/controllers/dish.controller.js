@@ -1,7 +1,9 @@
 import Dish from '../models/dish.model';
 
 const list = (req, res) => {
-  Dish.find({ chef: req.user.id })
+  Dish.find({ 
+    chef: req.user.id 
+  })
     .then(dishes => res.json({
       success: true,
       dishes,
@@ -14,7 +16,9 @@ const list = (req, res) => {
 
 const create = (req, res) => {
   const { title, description, stock, price, tags, ingredients } = req.body;
+  const { files } = req;
   Dish.create({
+    images: files.map(image => image.key),
     title,
     description,
     stock,

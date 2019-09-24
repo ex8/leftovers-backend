@@ -7,13 +7,15 @@ const userSchema = new Schema({
   firstName: { type: String, required: true, },
   lastName: { type: String, required: true, },
   email: { type: String, required: true, unique: true, },
+  password: { type: String, required: true, },
   phone: { type: String, required: true, },
+  isChef: { type: Boolean, default: false, },
+  // Profile fields -> filled in during Become A Chef (chefs only)
   streetName: { type: String },
   city: { type: String },
   state: { type: String },
   zipCode: { type: String },
-  username: { type: String, required: true, unique: true, },
-  password: { type: String, required: true, },
+  // add Profile model here...
 }, { timestamps: true, });
 
 userSchema.virtual('address').get(function() {
@@ -42,9 +44,8 @@ userSchema.methods.generateJwt = function() {
     lastName: this.lastName,
     email: this.email,
     phone: this.phone,
-    address: this.address,
-    username: this.username,
     createdAt: this.createdAt,
+    isChef: this.isChef,
   };
   return sign(payload, process.env.JWT_KEY, { expiresIn: '4h' });
 };

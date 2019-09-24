@@ -19,7 +19,6 @@ const dishSchema = new Schema({
   //   required: true,
   // },
   // availablePickupTimes: [],
-  // reviews: [],
   chef: {
     type: Schema.Types.ObjectId,
     ref: 'User',

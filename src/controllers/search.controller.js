@@ -44,8 +44,8 @@ const popular = (req, res) => {
     .limit(3)
     .populate('chef')
     .then(dishes => res.json({
-      success: true, 
-      dishes
+      success: true,
+      dishes,
     }))
     .catch(err => res.json({
       success: false,
@@ -60,8 +60,8 @@ const newest = (req, res) => {
     .populate('chef')
     .limit(3)
     .then(dishes => res.json({
-      success: true, 
-      dishes
+      success: true,
+      dishes,
     }))
     .catch(err => res.json({
       success: false,

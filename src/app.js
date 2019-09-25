@@ -6,9 +6,10 @@ import cors from 'cors';
 
 import passport from './config/passport';
 import searchRouter from './routes/search.routes';
-import authRouter from './routes/auth.routes';
+import accountRouter from './routes/account.routes';
+import chefRouter from './routes/chef.routes';
+
 import dishRouter from './routes/dish.routes';
-import profileRouter from './routes/profile.routes';
 
 const app = express();
 const port = process.env.API_PORT || 4000;
@@ -25,8 +26,9 @@ app.use(urlencoded({ extended: false }));
 app.use(passport.initialize());
 
 app.use('/api/search', searchRouter);
-app.use('/api/auth', authRouter);
-app.use('/api/dishes', dishRouter);
-app.use('/api/profile', profileRouter);
+app.use('/api/account', accountRouter);
+app.use('/api/chef', chefRouter);
+
+// app.use('/api/dishes', dishRouter);
 
 app.listen(port, () => console.log(`Backend running on port ${port}`));

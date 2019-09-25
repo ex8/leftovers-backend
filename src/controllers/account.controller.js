@@ -43,14 +43,13 @@ const login = ({ body: { email, password } }, res) => {
 };
 
 const signup = (req, res) => {
-  const { 
-    firstName, lastName, email, phone, username, password } = req.body;
-  User.find({ $or: [{ email }, { username }] })
+  const { firstName, lastName, email, phone, password } = req.body;
+  User.find({ email })
     .then(users => {
       if (users.length) {
         return res.json({
           success: false,
-          message: 'Email or username already exists. Please try again.'
+          message: 'Email already exists. Please try again.'
         });
       }
       else {
@@ -59,7 +58,6 @@ const signup = (req, res) => {
           lastName,
           email,
           phone,
-          username,
           password,
         })
         .then(user => res.json({

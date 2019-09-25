@@ -3,15 +3,27 @@ import { Schema, model } from 'mongoose';
 import { genSalt, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
-const userSchema = new Schema({
+const chefSchema = new Schema({
   firstName: { type: String, required: true, },
   lastName: { type: String, required: true, },
   email: { type: String, required: true, unique: true, },
   phone: { type: String, required: true, },
   password: { type: String, required: true, },
+  address: { type: String, },
+  isVerified: { type: Boolean, default: false },
+  driversLicenseImage: { type: String },
+  username: { type: String, unique: true, },
+  bio: { type: String, },
+  social: {
+    facebook: { type: String, },
+    twitter: { type: String, },
+    instagram: { type: String, },
+  },
+  rating: { type: Number, min: 0, max: 5, default: 0, },
+  reviews: [String],
 }, { timestamps: true, });
 
-userSchema.pre('save', function(next) {
+chefSchema.pre('save', function(next) {
   if (!this.isModified('password')) return next();
   genSalt(10)
     .then(salt => {
@@ -25,7 +37,7 @@ userSchema.pre('save', function(next) {
     .catch(err => next(err));
 });
 
-userSchema.methods.generateJwt = function() {
+chefSchema.methods.generateJwt = function() {
   const payload = {
     id: this.id,
     firstName: this.firstName,
@@ -37,4 +49,4 @@ userSchema.methods.generateJwt = function() {
   return sign(payload, process.env.JWT_KEY, { expiresIn: '4h' });
 };
 
-export default model('User', userSchema);
+export default model('Chef', chefSchema);

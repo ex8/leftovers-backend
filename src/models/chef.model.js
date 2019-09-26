@@ -9,10 +9,9 @@ const chefSchema = new Schema({
   email: { type: String, required: true, unique: true, },
   phone: { type: String, required: true, },
   password: { type: String, required: true, },
-  address: { type: String, },
-  isVerified: { type: Boolean, default: false },
-  driversLicenseImage: { type: String },
-  username: { type: String, unique: true, },
+  address: { type: String, required: true, },
+  driversLicenseImage: { type: String, required: true, },
+  username: { type: String, unique: true, required: true },
   bio: { type: String, },
   social: {
     facebook: { type: String, },
@@ -44,6 +43,7 @@ chefSchema.methods.generateJwt = function() {
     lastName: this.lastName,
     email: this.email,
     phone: this.phone,
+    isVerified: this.isVerified,
     createdAt: this.createdAt,
   };
   return sign(payload, process.env.JWT_KEY, { expiresIn: '4h' });

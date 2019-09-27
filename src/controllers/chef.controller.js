@@ -48,12 +48,12 @@ const signup = (req, res) => {
     address, driversLicenseImage, bio, social,
   } = req.body;
 
-  Chef.find({ email })
+  Chef.find({ $or: [{ email }, { username }] })
     .then(chefs => {
       if (chefs.length) {
         return res.json({
           success: false,
-          message: 'Email already exists. Please try again.'
+          message: 'Email or username already exists. Please try again.'
         });
       }
       else {

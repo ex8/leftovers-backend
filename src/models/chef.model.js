@@ -43,7 +43,7 @@ chefSchema.methods.generateJwt = function() {
     lastName: this.lastName,
     email: this.email,
     phone: this.phone,
-    isVerified: this.isVerified,
+    username: this.username,
     createdAt: this.createdAt,
   };
   return sign(payload, process.env.JWT_KEY, { expiresIn: '4h' });

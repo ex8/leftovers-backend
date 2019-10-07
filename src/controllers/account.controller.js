@@ -27,7 +27,7 @@ const login = ({ body: { email, password } }, res) => {
           else {
             return res.json({
               success: false,
-              message: 'Incorrect password. Please try again.'
+              message: 'Incorrect email or password. Please try again.'
             });
           }
         })

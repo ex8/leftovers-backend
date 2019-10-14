@@ -15,7 +15,7 @@ const list = (req, res) => {
 };
 
 const create = (req, res) => {
-  const { title, description, stock, price, tags, ingredients } = req.body;
+  const { title, description, stock, price, tags, ingredients, pickupAddress, coordinates, } = req.body;
   const { files } = req;
   Dish.create({
     images: files.map(image => image.key),
@@ -25,6 +25,11 @@ const create = (req, res) => {
     price,
     tags: tags.split(','),
     ingredients: ingredients.split(','),
+    pickupAddress,
+    location: {
+      type: 'Point',
+      coordinates: coordinates.split(','),
+    },
     chef: req.user.id
   })
     .then(dish => res.json({

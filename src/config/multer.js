@@ -14,7 +14,6 @@ const upload = multer({
       callback(null, { ...req.body });
     },
     key: function (req, file, callback) {
-      // find Dish using req{} and add key to images[]
       const key = `${Date.now().toString()}${path.extname(file.originalname)}`
       callback(null, key);
     }

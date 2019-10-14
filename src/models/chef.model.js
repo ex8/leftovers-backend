@@ -43,6 +43,7 @@ chefSchema.methods.generateJwt = function() {
     lastName: this.lastName,
     email: this.email,
     phone: this.phone,
+    address: this.address,
     username: this.username,
     createdAt: this.createdAt,
   };

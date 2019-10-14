@@ -28,7 +28,6 @@ app.use(passport.initialize());
 app.use('/api/search', searchRouter);
 app.use('/api/account', accountRouter);
 app.use('/api/chef', chefRouter);
-
-// app.use('/api/dishes', dishRouter);
+app.use('/api/dishes', dishRouter);
 
 app.listen(port, () => console.log(`Backend running on port ${port}`));

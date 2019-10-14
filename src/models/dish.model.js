@@ -10,23 +10,27 @@ const dishSchema = new Schema({
   tags: [String],
   ingredients: [String],
   rating: { type: Number, min: 0, max: 5, default: 0, },
-  // location: { 
-  //   type: { 
-  //     type: String, 
-  //     default: 'Point' 
-  //   }, 
-  //   coordinates: [Number],
-  //   required: true,
-  // },
+  pickupAddress: { type: String, required: true, },
   // availablePickupTimes: [],
+  location: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      required: true
+    },
+    coordinates: {
+      type: [Number],
+      required: true
+    }
+  },
   // reviews: [],
   chef: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'Chef',
     required: true,
   },
 }, { timestamps: true });
 
-// dishSchema.index({ location: "2dsphere" });
+dishSchema.index({ location: "2dsphere" });
 
 export default model('Dish', dishSchema);
